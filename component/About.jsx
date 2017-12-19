@@ -6,7 +6,7 @@ class About extends React.Component
   {
     return(
       <div>
-      <h3>This is whethar {this.props.location} && {this.props.temp}</h3>
+      <h3>This is whethar** {this.props.location} && {this.props.temp}</h3>
       </div>
     );
   }
