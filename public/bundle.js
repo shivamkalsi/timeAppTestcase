@@ -4195,7 +4195,12 @@ var Whether = function (_React$Component) {
             'Fetching msg......'
           );
         } else {
-          return React.createElement(_About2.default, { location: location, temp: temp });
+          return React.createElement(
+            'h3',
+            null,
+            'Fetching msg......'
+          );
+          //return(<About location={location} temp={temp}/>);
         }
       }
 

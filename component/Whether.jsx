@@ -38,7 +38,8 @@ class Whether extends React.Component
       }
       else
       {
-         return(<About location={location} temp={temp}/>);
+         return(<h3>Fetching msg......</h3>);
+         //return(<About location={location} temp={temp}/>);
       }
     }
     
