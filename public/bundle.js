@@ -2614,7 +2614,7 @@ var WhetherForm = function (_React$Component) {
                   React.createElement(
                     "td",
                     { align: "center" },
-                    React.createElement("input", { type: "text", name: "whetherloc", ref: "whetherloc" })
+                    React.createElement("input", { type: "text", name: "whetherloc", ref: "whetherloc", className: "text" })
                   )
                 ),
                 React.createElement(
@@ -4842,7 +4842,7 @@ var Whether = function (_React$Component) {
     var _this = _possibleConstructorReturn(this, (Whether.__proto__ || Object.getPrototypeOf(Whether)).call(this, props));
 
     _this.handelApiCall = _this.handelApiCall.bind(_this);
-    _this.rendermsg = _this.rendermsg.bind(_this);
+
     //this.testdata=this.testdata.bind(this);
     _this.state = {
       isloding: false
@@ -4866,22 +4866,6 @@ var Whether = function (_React$Component) {
       });
     }
   }, {
-    key: 'rendermsg',
-    value: function rendermsg(isloding, location, temp) {
-      if (isloding) {
-        return React.createElement(
-          'h3',
-          null,
-          'Fetching msg...... ',
-          isloding,
-          '**********'
-        );
-      } else {
-        //return(<h3>Fetching msg......</h3>);
-        return React.createElement(_About2.default, { location: location, temp: temp });
-      }
-    }
-  }, {
     key: 'render',
     value: function render() {
       console.log(this.state);
@@ -4893,7 +4877,7 @@ var Whether = function (_React$Component) {
 
       function testdata() {
         var retdata;
-        //return(<h1>*********************</h1>;
+
         if (isloding) {
           retdata = React.createElement(
             'h3',
@@ -4901,8 +4885,8 @@ var Whether = function (_React$Component) {
             'Fetching msg......'
           );
         } else {
-          //return(<h3>Fetching msg......</h3>);
-          retdata = React.createElement(_About2.default, { location: location, temp: isloding }); //<h3>Fetching msg......</h3>;//<About location={location} temp={temp}/>;
+
+          retdata = React.createElement(_About2.default, { location: location, temp: temp });
         }
         return retdata;
       }
@@ -4910,11 +4894,6 @@ var Whether = function (_React$Component) {
       return React.createElement(
         'div',
         null,
-        React.createElement(
-          'h3',
-          null,
-          'Whether App'
-        ),
         React.createElement(_WhetherForm2.default, { callApi: this.handelApiCall }),
         testdata()
       );
@@ -6446,17 +6425,17 @@ var About = function (_React$Component) {
   }
 
   _createClass(About, [{
-    key: 'render',
+    key: "render",
     value: function render() {
       return React.createElement(
-        'div',
+        "div",
         null,
         React.createElement(
-          'h3',
-          null,
-          'This is whethar* ',
+          "h3",
+          { className: "result" },
+          "Temperature of ",
           this.props.location,
-          ' && ',
+          " is ",
           this.props.temp
         )
       );
@@ -14921,11 +14900,6 @@ var TestMain = function (_React$Component) {
 				'div',
 				null,
 				React.createElement(_NavBar2.default, null),
-				React.createElement(
-					'h2',
-					null,
-					'Hiiiiiiiiiiiiiiiiiiiiiiiiiiiii'
-				),
 				this.props.children
 			);
 		}
@@ -14963,27 +14937,78 @@ var _require = __webpack_require__(48),
 var NavBar = function (_React$Component) {
   _inherits(NavBar, _React$Component);
 
-  function NavBar() {
+  function NavBar(props) {
     _classCallCheck(this, NavBar);
 
-    return _possibleConstructorReturn(this, (NavBar.__proto__ || Object.getPrototypeOf(NavBar)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (NavBar.__proto__ || Object.getPrototypeOf(NavBar)).call(this, props));
+
+    _this.onSearch = _this.onSearch.bind(_this);
+    return _this;
   }
 
   _createClass(NavBar, [{
+    key: 'onSearch',
+    value: function onSearch() {
+      alert('Hiiii');
+    }
+  }, {
     key: 'render',
     value: function render() {
       return React.createElement(
-        'h3',
-        null,
+        'div',
+        { className: 'top-bar' },
         React.createElement(
-          Link,
-          { to: '/test' },
-          'test'
+          'div',
+          { className: 'top-bar-left' },
+          React.createElement(
+            'ul',
+            { className: 'menu' },
+            React.createElement(
+              'li',
+              { className: 'menu-text' },
+              'Whether App'
+            ),
+            React.createElement(
+              'li',
+              null,
+              React.createElement(
+                Link,
+                { to: '/test' },
+                'test'
+              )
+            ),
+            React.createElement(
+              'li',
+              null,
+              React.createElement(
+                Link,
+                { to: '/whether' },
+                'whether'
+              )
+            )
+          )
         ),
         React.createElement(
-          Link,
-          { to: '/whether' },
-          'whether'
+          'div',
+          { className: 'top-bar-right' },
+          React.createElement(
+            'form',
+            { onSubmit: this.onSearch },
+            React.createElement(
+              'ul',
+              { className: 'menu' },
+              React.createElement(
+                'li',
+                null,
+                React.createElement('input', { type: 'search', ref: 'search', placeholder: 'Search Data' })
+              ),
+              React.createElement(
+                'li',
+                null,
+                React.createElement('input', { type: 'submit', className: 'button', value: 'Submit' })
+              )
+            )
+          )
         )
       );
     }

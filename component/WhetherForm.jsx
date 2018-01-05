@@ -24,7 +24,7 @@ class WhetherForm extends React.Component
                   <table>
                     <tbody>
                       <tr>
-                        <td align="center"><input type="text" name="whetherloc" ref="whetherloc" /></td>
+                        <td align="center"><input type="text" name="whetherloc" ref="whetherloc" className="text" /></td>
                       </tr>
                       <tr>
                         <td align="center"><button>Submit</button></td>
