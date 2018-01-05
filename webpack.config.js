@@ -1,5 +1,17 @@
+var webpack=require('webpack');
 module.exports={
-	entry:'./component/Main.jsx',
+	entry:['script-loader!jquery/dist/jquery.min.js','style-loader!foundation-sites/dist/css/foundation.min.css','./component/Main.jsx'],
+	externals:{
+		jquery:'jQuery'
+	},
+	
+	plugins:[
+		new webpack.ProvidePlugin({
+		'$':'jquery',
+		'jQuery':'jquery'
+		})
+		],
+	
     output: {
         path: __dirname,
         filename: "./public/bundle.js"
@@ -8,7 +20,8 @@ module.exports={
 		alias:{
 			
 		},
-		extensions:['.js','.jsx'],
+		extensions:['.js','.jsx', '.css'],
+	
 	},
     module: {
         loaders: [
@@ -33,7 +46,7 @@ module.exports={
 				presets:['react', 'es2015']
 			}
 		},
-            { test: /\.css$/, loader: "style!css" }
+            { test: /\.css$/, loader: "style-loader!css-loader" }
         ]
     },
 }

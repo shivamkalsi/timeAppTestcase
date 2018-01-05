@@ -17,7 +17,7 @@ app.use(express.static('public'));
 
 
 
-var server=app.listen(PORT,function()
-{
-	console.log('Server Started on port ' +PORT);
+var server=app.listen(process.env.PORT || 3000, process.env.IP || "0.0.0.0", function(){
+  var addr = server.address();
+  console.log("Chat server listening at", addr.address + ":" + addr.port);
 });
