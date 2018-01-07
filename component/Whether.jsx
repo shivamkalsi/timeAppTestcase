@@ -20,34 +20,35 @@ class Whether extends React.Component
     OpenWhether.getTemp(location).then(function(temp){
       that.setState({
         location:location,
-        temp:temp
+        temp:temp,
+        isloding:false
       });
     },function(err){
       alert(err);
     })
   }
+
+
   render()
   {
-    var {isloding,location,temp}=this.state;
-    
-    function rendermsg()
-    {
-      if(isloding)
+      var {location, temp, isloding}=this.state;
+      function getdata()
       {
-        return(<h3>Fetching msg......</h3>);
+          if(isloding)
+          {
+            return(<h3>Fetching Data................</h3>);
+          }
+          else
+          {
+            return(<About location={location} temp={temp} />);
+          }
       }
-      else
-      {
-         return(<h3>Fetching msg......</h3>);
-         //return(<About location={location} temp={temp}/>);
-      }
-    }
-    
     return(
     <div>
     <h3>Whether App</h3>
+
     <WhetherForm callApi={this.handelApiCall} />
-    {rendermsg}
+    {getdata()},{isloding}
     </div>
     );
   }

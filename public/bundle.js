@@ -4172,7 +4172,8 @@ var Whether = function (_React$Component) {
       _OpenWhether2.default.getTemp(location).then(function (temp) {
         that.setState({
           location: location,
-          temp: temp
+          temp: temp,
+          isloding: false
         });
       }, function (err) {
         alert(err);
@@ -4182,28 +4183,21 @@ var Whether = function (_React$Component) {
     key: 'render',
     value: function render() {
       var _state = this.state,
-          isloding = _state.isloding,
           location = _state.location,
-          temp = _state.temp;
+          temp = _state.temp,
+          isloding = _state.isloding;
 
-
-      function rendermsg() {
+      function getdata() {
         if (isloding) {
           return React.createElement(
             'h3',
             null,
-            'Fetching msg......'
+            'Fetching Data................'
           );
         } else {
-          return React.createElement(
-            'h3',
-            null,
-            'Fetching msg......'
-          );
-          //return(<About location={location} temp={temp}/>);
+          return React.createElement(_About2.default, { location: location, temp: temp });
         }
       }
-
       return React.createElement(
         'div',
         null,
@@ -4213,7 +4207,9 @@ var Whether = function (_React$Component) {
           'Whether App'
         ),
         React.createElement(_WhetherForm2.default, { callApi: this.handelApiCall }),
-        rendermsg
+        getdata(),
+        ',',
+        isloding
       );
     }
   }]);
