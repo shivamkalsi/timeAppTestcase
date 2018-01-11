@@ -9,17 +9,20 @@ module.exports={
     var requestUrl=`${Open_Whether_Map_URL}&q=${encodeLocation}`;
     console.log(requestUrl);
     return axios.get(requestUrl).then(function(res){
+
+      console.log(res+"@@@@@@@@@@@@@@@");
       if(res.data.cod && res.data.message)
       {
+        
         throw new Error(res.data.message);
       }
       else
       {
         return res.data.main.temp;
       }
-    },function(res){
-        throw new Error(res.data.message);
-    });
+
+    
+    }).catch(function(e){ throw new Error("Invalid State");});
 
   }
 }

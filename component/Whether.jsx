@@ -2,6 +2,7 @@ var React = require('react');
 import WhetherForm from './WhetherForm.jsx';
 import About from './About.jsx';
 import OpenWhether from '../api/OpenWhether.jsx';
+import ErrorMotal from './ErrorMotal.jsx';
 var axios=require('axios');
 class Whether extends React.Component
 {
@@ -12,7 +13,8 @@ class Whether extends React.Component
    
     //this.testdata=this.testdata.bind(this);
     this.state={
-      isloding:false
+      isloding:false,
+      iserror:false
     };
   }
   handelApiCall(location)
@@ -23,16 +25,20 @@ class Whether extends React.Component
       that.setState({
         location:location,
         temp:temp,
-        isloding:false
+        isloding:false,
+        iserror:false
       });
-    },function(err){
-      alert(err);
-    })
+    }).catch(function(err){
+      that.setState({
+        isloding:false,
+        iserror:true
+      });
+    });
   }
    
   render()
   {
-    var {isloding,location,temp}=this.state;
+    var {isloding,location,temp, iserror}=this.state;
     
      function testdata()
      {
@@ -47,12 +53,20 @@ class Whether extends React.Component
       }
       return(retdata);
      }
+     
+   function renderError()
+   {
+     if( iserror==true)
+     {
+      return(<ErrorMotal />);
+     }
+   }
     
     return(
       <div>
         <WhetherForm callApi={this.handelApiCall} />
         {testdata()}
-  
+      
       </div>
     );
   }

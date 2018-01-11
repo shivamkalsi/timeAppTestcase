@@ -3,7 +3,12 @@ var ReactDom=require('react-dom');
 var {Router}=require('react-router');
 var TestMain=require('./TestMain.jsx');
 import Whether  from './Whether.jsx';
-
+import $ from 'jquery';
+import 'foundation-sites';
+import 'foundation-sites/js/foundation.core';
+import 'foundation-sites/js/foundation.util.mediaQuery';
+import 'foundation-sites/js/foundation.toggler';
+import 'foundation-sites/js/foundation.sticky';
 
 
 import Test from './test.jsx';
@@ -12,7 +17,9 @@ import WhetherForm from './WhetherForm.jsx';
 
 require('foundation-sites/dist/css/foundation.min.css');
 
-//$(document).foundation();
+Foundation.addToJquery($);
+
+$(document).foundation();
 
 
 ReactDom.render(<BrowserRouter>

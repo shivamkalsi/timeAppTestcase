@@ -1,14 +1,19 @@
 var webpack=require('webpack');
+var path = require("path");
 module.exports={
 	entry:['script-loader!jquery/dist/jquery.min.js','style-loader!foundation-sites/dist/css/foundation.min.css','./component/Main.jsx'],
 	externals:{
-		jquery:'jQuery'
+		jquery:'jQuery',
+		foundation:'Foundation',
 	},
-	
+	"browser": {
+    "jquery": "./node_modules/jquery/dist/jquery.min.js",
+    "foundation": "./node_modules/foundation-sites/dist/foundation.js"
+  },
 	plugins:[
 		new webpack.ProvidePlugin({
-		'$':'jquery',
-		'jQuery':'jquery'
+		$:'jquery',
+		jQuery:'jquery'
 		})
 		],
 	
@@ -49,4 +54,5 @@ module.exports={
             { test: /\.css$/, loader: "style-loader!css-loader" }
         ]
     },
+      
 }
