@@ -49,7 +49,13 @@ class Whether extends React.Component
       }
       else
       {
-        retdata=<About location={location} temp={temp}/>;
+        if(iserror)
+        {
+        retdata='';
+        }
+        else{
+            retdata=<About location={location} temp={temp}/>;
+        }
       }
       return(retdata);
      }
@@ -66,7 +72,7 @@ class Whether extends React.Component
       <div>
         <WhetherForm callApi={this.handelApiCall} />
         {testdata()}
-      
+        {renderError()}
       </div>
     );
   }

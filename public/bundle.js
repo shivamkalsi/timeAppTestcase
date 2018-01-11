@@ -4914,7 +4914,11 @@ var Whether = function (_React$Component) {
             'Fetching msg......'
           );
         } else {
-          retdata = React.createElement(_About2.default, { location: location, temp: temp });
+          if (iserror) {
+            retdata = '';
+          } else {
+            retdata = React.createElement(_About2.default, { location: location, temp: temp });
+          }
         }
         return retdata;
       }
@@ -4929,7 +4933,8 @@ var Whether = function (_React$Component) {
         'div',
         null,
         React.createElement(_WhetherForm2.default, { callApi: this.handelApiCall }),
-        testdata()
+        testdata(),
+        renderError()
       );
     }
   }]);
@@ -28216,40 +28221,39 @@ var ErrorMotal = function (_React$Component) {
     }
 
     _createClass(ErrorMotal, [{
-        key: 'componentDidMount',
+        key: "componentDidMount",
         value: function componentDidMount() {
             var modal = new Foundation.Reveal($('#errorMotal'));
             modal.open();
-            alert('test');
         }
     }, {
-        key: 'render',
+        key: "render",
         value: function render() {
             return React.createElement(
-                'div',
-                { className: 'reveal tiny', id: 'errorMotal', 'data-reveal': true },
+                "div",
+                { className: "reveal tiny", id: "errorMotal", "data-reveal": true },
                 React.createElement(
-                    'h4',
+                    "h4",
                     null,
-                    'Awesome. I Have It.'
+                    "Awesome. I Have It."
                 ),
                 React.createElement(
-                    'p',
-                    { className: 'lead' },
-                    'Your couch. It is mine.'
+                    "p",
+                    { className: "lead" },
+                    "Your couch. It is mine."
                 ),
                 React.createElement(
-                    'p',
+                    "p",
                     null,
-                    'I\'m a cool paragraph that lives inside of an even cooler modal. Wins!'
+                    "I'm a cool paragraph that lives inside of an even cooler modal. Wins!"
                 ),
                 React.createElement(
-                    'button',
-                    { className: 'close-button', 'data-close': true, 'aria-label': 'Close modal', type: 'button' },
+                    "button",
+                    { className: "close-button", "data-close": "", "aria-label": "Close modal", type: "button" },
                     React.createElement(
-                        'span',
-                        { 'aria-hidden': 'true' },
-                        '\xD7'
+                        "span",
+                        { "aria-hidden": "true" },
+                        "\xD7"
                     )
                 )
             );
