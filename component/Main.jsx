@@ -17,6 +17,11 @@ import WhetherForm from './WhetherForm.jsx';
 
 require('foundation-sites/dist/css/foundation.min.css');
 
+<<<<<<< HEAD
+=======
+Foundation.addToJquery($);
+
+>>>>>>> 54a6029acb266dd705db381acd3044e7bb1b1117
 $(document).foundation();
 
 

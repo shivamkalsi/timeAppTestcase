@@ -2,6 +2,7 @@ var React = require('react');
 import WhetherForm from './WhetherForm.jsx';
 import About from './About.jsx';
 import OpenWhether from '../api/OpenWhether.jsx';
+import ErrorMotal from './ErrorMotal.jsx';
 var axios=require('axios');
 import Modal from './Modal.jsx';
 
@@ -15,9 +16,13 @@ class Whether extends React.Component
     //this.testdata=this.testdata.bind(this);
     this.state={
       isloding:false,
+<<<<<<< HEAD
 	  location:'',
 	  temp:'',
 	  iserror:false
+=======
+      iserror:false
+>>>>>>> 54a6029acb266dd705db381acd3044e7bb1b1117
     };
   }
   handelApiCall(location)
@@ -29,6 +34,7 @@ class Whether extends React.Component
         location:location,
         temp:temp,
         isloding:false,
+<<<<<<< HEAD
 		iserror:false,
       });
     },function(err){
@@ -37,6 +43,16 @@ class Whether extends React.Component
 		});
 		
     })
+=======
+        iserror:false
+      });
+    }).catch(function(err){
+      that.setState({
+        isloding:false,
+        iserror:true
+      });
+    });
+>>>>>>> 54a6029acb266dd705db381acd3044e7bb1b1117
   }
 
 
@@ -55,10 +71,17 @@ class Whether extends React.Component
       }
       else
       {
-        retdata=<About location={location} temp={temp}/>;
+        if(iserror)
+        {
+        retdata='';
+        }
+        else{
+            retdata=<About location={location} temp={temp}/>;
+        }
       }
       return(retdata);
      }
+<<<<<<< HEAD
 	 function renderError()
 	 {
 		 console.log(iserror+'0000000000000000');
@@ -72,12 +95,26 @@ class Whether extends React.Component
 		 }
 		 return(renderr);
 	 }
+=======
+     
+   function renderError()
+   {
+     if( iserror==true)
+     {
+      return(<ErrorMotal />);
+     }
+   }
+>>>>>>> 54a6029acb266dd705db381acd3044e7bb1b1117
     
     return(
       <div>
         <WhetherForm callApi={this.handelApiCall} />
         {testdata()}
+<<<<<<< HEAD
 		{renderError()}
+=======
+        {renderError()}
+>>>>>>> 54a6029acb266dd705db381acd3044e7bb1b1117
       </div>
 
     );
