@@ -3,14 +3,21 @@ import WhetherForm from './WhetherForm.jsx';
 import About from './About.jsx';
 import OpenWhether from '../api/OpenWhether.jsx';
 var axios=require('axios');
+import Modal from './Modal.jsx';
+
 class Whether extends React.Component
 {
   constructor(props)
   {
     super(props);
     this.handelApiCall=this.handelApiCall.bind(this);
+   
+    //this.testdata=this.testdata.bind(this);
     this.state={
-      isloding:false
+      isloding:false,
+	  location:'',
+	  temp:'',
+	  iserror:false
     };
   }
   handelApiCall(location)
@@ -21,35 +28,58 @@ class Whether extends React.Component
       that.setState({
         location:location,
         temp:temp,
-        isloding:false
+        isloding:false,
+		iserror:false,
       });
     },function(err){
-      alert(err);
+		that.setState({isloding:false,
+			iserror:true,
+		});
+		
     })
   }
 
 
+ 
+   
   render()
   {
-      var {location, temp, isloding}=this.state;
-      function getdata()
+    var {isloding,location,temp, iserror}=this.state;
+    
+     function testdata()
+     {
+       var retdata;
+       if(isloding)
       {
-          if(isloding)
-          {
-            return(<h3>Fetching Data................</h3>);
-          }
-          else
-          {
-            return(<About location={location} temp={temp} />);
-          }
+        retdata=<h3 className="text-center">Fetching msg......</h3>;
       }
+      else
+      {
+        retdata=<About location={location} temp={temp}/>;
+      }
+      return(retdata);
+     }
+	 function renderError()
+	 {
+		 console.log(iserror+'0000000000000000');
+		 var renderr;
+		 if(iserror)
+		 {
+			 renderr=<Modal />;
+		 }
+		 else{
+			 renderr='';
+		 }
+		 return(renderr);
+	 }
+    
     return(
-    <div>
-    <h3>Whether App</h3>
+      <div>
+        <WhetherForm callApi={this.handelApiCall} />
+        {testdata()}
+		{renderError()}
+      </div>
 
-    <WhetherForm callApi={this.handelApiCall} />
-    {getdata()},{isloding}
-    </div>
     );
   }
 }

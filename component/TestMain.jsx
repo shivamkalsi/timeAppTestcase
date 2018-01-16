@@ -8,7 +8,6 @@ class TestMain extends React.Component
 		return(
 		<div>
 			<Nav />
-			<h2>Hiiiiiiiiiiiiiiiiiiiiiiiiiiiii</h2>
 			{this.props.children}
 		</div>
 		);
